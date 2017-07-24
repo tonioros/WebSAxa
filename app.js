@@ -4,6 +4,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
+//Index
+index = require("./routes/view"),
 //Declaracion de Routers
 apiServicio = require('./routes/apiServicio'),
 apiDServicio = require('./routes/apiDetalleServicio'),
@@ -31,6 +34,7 @@ app.use(function(req, res, next){
   next();
 })
 
+app.use("/", index) 
 //Rutas para WEB SERVICES
 app.use('/', apiServicio)
 app.use('/', apiDServicio)
