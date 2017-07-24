@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 
 
 //Index
-index = require("./routes/view"),
+index = require("./routes/views"),
 //Declaracion de Routers
 apiServicio = require('./routes/apiServicio'),
 apiDServicio = require('./routes/apiDetalleServicio'),
