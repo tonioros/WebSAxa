@@ -38,6 +38,7 @@ app.use(function(req, res, next){
   next();
 })
 
+
 app.use("/", index) 
 //Rutas para WEB SERVICES
 app.use('/', apiServicio)
@@ -51,6 +52,12 @@ app.use('/', apiUsuario)
 app.use('/',upload)
 //Autenticacion de Facebook
 app.use("/",authFacebook)
+
+app.use((req,res,next)=>{
+  if(req.method == "OPTIONS"){
+    next();
+  }
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
