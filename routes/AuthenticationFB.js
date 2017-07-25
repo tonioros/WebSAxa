@@ -11,7 +11,7 @@ var user = {}
     profileFields:["id", "displayName", "emails", "photos"] 
   }, function(accessToken, refreshToken, profile, cb){
     if(profile){
-     verificarDatos(user.Email,function(state){
+     verificarDatos(profile.emails[0].value,function(state){
         user.Nombre = profile.displayName
         user.Email = profile.emails[0].value;
         user.Photo = profile.photos[0].value;
@@ -28,10 +28,9 @@ router.get('/facebook/index',function(req, res, next){
 
     }else{//Ya Registrado
     getUser(user.Email, function(usuario){
-        usuario.
         res.cookie("data", JSON.stringify(usuario))
-        var url = "http://localhost:4200"+((usuario.idTipoUsuario== 1)?"ADM" :"MEC")+"/"
-        res.redirect(url, 200);
+        var url = "http://axaws.herokuapp.com/"+((usuario.idTipoUsuario== 1)?"ADM" :"MEC")+"/"
+        res.redirect(url);
     });
     }
 });
