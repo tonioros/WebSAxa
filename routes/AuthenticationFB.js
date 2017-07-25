@@ -12,7 +12,6 @@ var user = {}
   }, function(accessToken, refreshToken, profile, cb){
     if(profile){
      verificarDatos(user.Email,function(state){
-         user.state
         user.Nombre = profile.displayName
         user.Email = profile.emails[0].value;
         user.Photo = profile.photos[0].value;
@@ -29,11 +28,9 @@ router.get('/facebook/index',function(req, res, next){
 
     }else{//Ya Registrado
     getUser(user.Email, function(usuario){
-        res.cookie("UDI", usuario.idUsuario)
-        res.cookie("UNA", usuario.nombre)
-        res.cookie("UCO", usuario.correo)
-        res.cookie("UCD", usuario.codigo)
-        var url = "../../"+(usuario.idTipoUsuario== 1)?"ADM" :"MEC"+"/"
+        usuario.
+        res.cookie("data", JSON.stringify(usuario))
+        var url = "http://localhost:4200"+((usuario.idTipoUsuario== 1)?"ADM" :"MEC")+"/"
         res.redirect(url, 200);
     });
     }
@@ -83,10 +80,11 @@ function getUser(email, callback){
         if(typeof result != undefined){
             usuario.nombre = result[0].nombre
             usuario.idTipoUsuario = result[0].idTipoUsuario
-            usuario.Empresa = result[0].idEmpresa
+            usuario.idEmpresa = result[0].idEmpresa
             usuario.codigo = result[0].codigo
             usuario.correo = result[0].correo
-            usuario.idUsuario = result[0].idUsuario
+            usuario.idUsuario = result[0].idUsuario,
+            usuario.urlIMG = result[0].urlIMG
             callback(usuario);
         }else{
             throw error;
