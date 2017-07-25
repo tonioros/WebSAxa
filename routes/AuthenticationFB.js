@@ -29,7 +29,7 @@ router.get('/facebook/index',function(req, res, next){
     }else{//Ya Registrado
     getUser(user.Email, function(usuario){
         res.cookie("data", JSON.stringify(usuario))
-        var url = "http://axaws.herokuapp.com/"+((usuario.idTipoUsuario== 1)?"ADM" :"MEC")+"/"
+        var url = "http://localhost:4200/"+((usuario.idTipoUsuario== 1)?"ADM" :"MEC")+"/"
         res.redirect(url);
     });
     }
