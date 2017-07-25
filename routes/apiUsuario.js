@@ -83,7 +83,7 @@ router.put('/api/usuario/:idUsuario', function(req, res) {
     edad: req.body.edad,
     correo: req.body.correo,
     contrasena: req.body.contrasena,
-    urlIMG: req.body.urlIMG
+    urlIMG: (req.body.urlIMG != "" || req.body.urlIMG != null)? req.body.urlIMG :'https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png'
   }
 
   if(data.idUsuario == idUsuario) {

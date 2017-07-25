@@ -13,7 +13,9 @@ apiAuto = require('./routes/apiAuto'),
 apiEmpresa = require('./routes/apiEmpresa'),
 apiUsuario = require('./routes/apiUsuario'),
 //Conexion a Router para Autenticar por Facebook
-authFacebook = require('./routes/AuthenticationFB')
+authFacebook = require('./routes/AuthenticationFB'),
+//Router de Carga de Imagenes
+upload = require("./routes/upload.images")
 
 var app = express();
 
@@ -27,7 +29,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(function(req, res, next){
-  res.setHeader("Access-Control-Allow-Origin","*");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, authorization, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
   next();
 })
 
@@ -39,7 +43,8 @@ app.use('/', apiCalendario)
 app.use('/', apiAuto)
 app.use('/', apiEmpresa)
 app.use('/', apiUsuario)
-
+//Carga de Imagenes
+app.use('/',upload)
 //Autenticacion de Facebook
 app.use("/",authFacebook)
 
