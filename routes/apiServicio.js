@@ -1,6 +1,6 @@
 var router = require("express").Router(), servicio = require("../model/servicio")
 
-router.get("/api/servicio/ID/:idEmpresa", function(req,res,next){
+router.get("/api/servicio/emp/:idEmpresa", function(req,res,next){
     if(req.params.idEmpresa != null){
         servicio.selectAll(req.params.idEmpresa, function(error, resultado){
             if(resultado == null){
@@ -28,7 +28,7 @@ router.get("/api/servicio/auto/:idAuto", function(req,res,next){
     }
 })
 
-router.get("/api/servicio/mecanico/:idMecanico", function(req,res,next){
+router.get("/api/servicio/mec/:idMecanico", function(req,res,next){
     if(req.params.idMecanico != null){
         servicio.selectByMechanical(req.params.idMecanico, function(error, resultado){
             if(resultado == null){

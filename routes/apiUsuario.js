@@ -21,7 +21,7 @@ router.post('/autenticar', function(req, res) {
   });
 });
 
-router.get('/api/usuario/ID/:idEmpresa', function(req, res) {
+router.get('/api/usuario/emp/:idEmpresa', function(req, res) {
   var id = (req.params.idEmpresa != null)?req.params.idEmpresa : 0;
   Usuario.selectAll(id,function(error, resultados){
     if(typeof resultados !== undefined) {
@@ -32,7 +32,7 @@ router.get('/api/usuario/ID/:idEmpresa', function(req, res) {
   });
 });
 
-router.get('/api/usuario/CO/:correo', function(req, res) {
+router.get('/api/usuario/co/:correo', function(req, res) {
   var email = (req.params.correo != null)?req.params.correo : '';
   Usuario.VerifyEmail(email,function(error, resultados){
     if(typeof resultados !== undefined) {

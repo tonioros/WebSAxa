@@ -1,7 +1,7 @@
 var router = require("express").Router(),
     detalleS = require("../model/detalleservicio");
     
-router.get("/apiDetalleServicio/ID/:idServicio", function (req, res, next) {
+router.get("/api/ds/serv/:idServicio", function (req, res, next) {
     if (req.params.idServicio != null) {
         detalleS.selectAll(req.params.idServicio, function (err, response) {
             if (response != null) {
@@ -15,7 +15,7 @@ router.get("/apiDetalleServicio/ID/:idServicio", function (req, res, next) {
     }
 })
 
-router.get("/apiDetalleServicio/:idDetalleS", function (req, res, next) {
+router.get("/api/ds/:idDetalleS", function (req, res, next) {
     if (req.params.idDetalleS != null) {
         detalleS.select(req.params.idDetalleS, function (err, response) {
             if (response != null) {
@@ -33,7 +33,7 @@ router.get("/apiDetalleServicio/:idDetalleS", function (req, res, next) {
     }
 })
 
-router.post("/apiDetalleServicio/", function (req, res, next) {
+router.post("/api/ds", function (req, res, next) {
     var data = [req.body.idServicio, req.body.descripcion, req.body.subtotal]
     detalleS.insert(data, function (err, response) {
         if (!error) {
@@ -44,7 +44,7 @@ router.post("/apiDetalleServicio/", function (req, res, next) {
     })
 })
 
-router.delete("/apiDetalleServicio/:idDetalleS", function (req, res, next) {
+router.delete("/api/ds/:idDetalleS", function (req, res, next) {
     if (req.params.idDetalleS != null) {
         detalleS.delete(req.params.idDetalleS, function (err, response) {
             if (response != null) {

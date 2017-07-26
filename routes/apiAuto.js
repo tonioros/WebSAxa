@@ -2,7 +2,7 @@ var express = require('express');
 var model = require('../model/auto');
 var router = express.Router();
 
-router.get('/api/auto/:idUsuario', function(req, res) {
+router.get('/api/auto/us/:idUsuario', function(req, res) {
   var id = req.params.idUsuario;
   model.selectAll(id,function(error, resultados){
     if(typeof resultados !== undefined) {
@@ -13,7 +13,7 @@ router.get('/api/auto/:idUsuario', function(req, res) {
   });
 });
 
-router.get('/api/auto/:idAuto',
+router.get('/api/auto/au/:idAuto',
   function(req, res) {
     var idEmpresa = req.params.idEmpresa;
     model.select(idUsuario,

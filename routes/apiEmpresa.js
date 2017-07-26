@@ -25,7 +25,7 @@ router.get('/api/empresa/:idEmpresa',
   });
 });
 
-router.get('/api/empresa/CD/:codigo',
+router.get('/api/empresa/cd/:codigo',
   function(req, res) {
     var codigo = req.params.codigo;
     model.selectByCodigo(codigo,
@@ -53,8 +53,8 @@ router.post('/api/empresa', function(req, res) {
   });
 });
 
-router.put('/api/empresa/:id', function(req, res) {
-  var id = req.params.id;
+router.put('/api/empresa/:idEmpresa', function(req, res) {
+  var id = req.params.idEmpresa;
   var data = {
     idEmpresa : req.body.idEmpresa,
     nombre: req.body.nombre,
@@ -62,7 +62,7 @@ router.put('/api/empresa/:id', function(req, res) {
     direccion: req.body.direccion
   }
 
-  if(data.idEmpresa === data.idEmpresa) {
+  if(id === data.idEmpresa) {
     model.update(data, function(err, resultado) {
       if(resultado !== undefined) {
         res.json(resultado);
@@ -75,9 +75,9 @@ router.put('/api/empresa/:id', function(req, res) {
   }
 });
 
-router.delete('/api/empresa/:id',
+router.delete('/api/empresa/:idEmpresa',
   function(req, res) {
-    var id = req.params.id;
+    var id = req.params.idEmpresa;
     model.delete(id,
       function(error, resultado){
       if(resultado && resultado.Mensaje === "Eliminado") {
