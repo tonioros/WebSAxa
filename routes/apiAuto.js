@@ -15,7 +15,7 @@ router.get('/api/auto/us/:idUsuario', function(req, res) {
 
 router.get('/api/auto/au/:idAuto',
   function(req, res) {
-    var idEmpresa = req.params.idAuto;
+    var idAuto = req.params.idAuto;
     model.select(idAuto,
       function(error, resultados){
       if(typeof resultados !== undefined) {
@@ -52,7 +52,7 @@ router.put('/api/auto/:id', function(req, res) {
     anio: req.body.anio
   }
 
-  if(data.idAuto === data.idAuto) {
+  if(data.idAuto == id) {
     model.update(data, function(err, resultado) {
       if(resultado !== undefined) {
         res.json(resultado);
