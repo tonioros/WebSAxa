@@ -15,7 +15,7 @@ usuario.selectAll = function(id, callback){
 
 usuario.select = function(id, callback){
   if(database){
-    var sql = "SELECT * , em.nombre FROM usuario us INNER JOIN empresa em ON em.idEmpresa = us.idEmpresa WHERE idUsuario = ?";
+    var sql = "SELECT * , em.nombre AS nombreEmpresa FROM usuario us INNER JOIN empresa em ON em.idEmpresa = us.idEmpresa WHERE idUsuario = ?";
     database.query(sql,id,function(error,resultado){
       if(error){
         throw error;
