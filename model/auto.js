@@ -3,7 +3,7 @@ var auto = {};
 
 auto.selectAll = function(idUsuario, callback){
   if(database){
-    database.query("SELECT * FROM Auto WHERE idUsuario = ?",idUsuario,function(error,resultados){
+    database.query("SELECT * FROM auto WHERE idUsuario = ?",idUsuario,function(error,resultados){
       if(error){
         throw error;
       }else {
@@ -15,7 +15,7 @@ auto.selectAll = function(idUsuario, callback){
 
 auto.select = function(id, callback){
   if(database){
-    var sql = "SELECT * FROM Auto WHERE idAuto = ?";
+    var sql = "SELECT * FROM auto WHERE idAuto = ? ";
     database.query(sql,id,function(error,resultado){
       if(error){
         throw error;
@@ -28,14 +28,14 @@ auto.select = function(id, callback){
 
 auto.insert = function(data,callback){
   if(database){
-    database.query("INSERT INTO Auto (idUsuario,modelo,marca,anio,codigo,fechaCreacion)"
-    +"VALUES(?,?,?,?,?,?)",
+    database.query("INSERT INTO auto (idUsuario,modelo,marca,anio,codigo,fechaCreacion) "
+    +"VALUES(?,?,?,?,?,?, NOW())",
     [data.idUsuario,data.modelo,data.marca,data.anio,data.codigo,data.fechaCreacion],
     function(error,resultado){
       if(error){
         throw error;
       }else {
-        callback(null, {'insertId': resultado.insertId})
+        callback(null, {'Mensaje': true})
       }
     });
   }
@@ -43,7 +43,7 @@ auto.insert = function(data,callback){
 
 auto.update = function (data,callback){
   if(database){
-    database.query('UPDATE Auto SET modelo = ?, marca = ?,anio = ?'+
+    database.query('UPDATE auto SET modelo = ?, marca = ?,anio = ? '+
     'WHERE idAuto = ?',[data.modelo,data.marca,data.anio,data.idAuto],
     function(error,resultado){
       if(error){
@@ -57,7 +57,7 @@ auto.update = function (data,callback){
 
 auto.delete = function (id, callback){
   if(database){
-    database.query('DELETE FROM Usuario WHERE idUsuario = ?'.id,
+    database.query('DELETE FROM auto WHERE idAuto = ?'.id,
     function(error,resultado){
       if(error){
         throw error;
