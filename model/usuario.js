@@ -15,7 +15,7 @@ usuario.selectAll = function(id, callback){
 
 usuario.select = function(id, callback){
   if(database){
-    var sql = "SELECT * FROM usuario WHERE idUsuario = ?";
+    var sql = "SELECT * , em.nombre FROM usuario us INNER JOIN empresa em ON em.idEmpresa = us.idEmpresa WHERE idUsuario = ?";
     database.query(sql,id,function(error,resultado){
       if(error){
         throw error;
@@ -75,7 +75,7 @@ usuario.update = function (data,callback){
       if(error){
         throw error;
       }else {
-        callback(null,{'Mensaje': 'Se edito un usuario'})
+        callback(null,{'Mensaje': true})
       }
     });
   }
@@ -88,7 +88,7 @@ usuario.delete = function (id, callback){
       if(error){
         throw error;
       }else{
-        callback(null,{'Mensaje': 'Eliminado'})
+        callback(null,{'Mensaje': true})
       }
     })
   }

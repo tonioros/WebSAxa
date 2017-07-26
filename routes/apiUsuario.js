@@ -67,7 +67,7 @@ router.post('/api/usuario', function(req, res) {
     contrasena: req.body.contrasena
   }
   Usuario.insert(data, function(err, resultado) {
-    if(!resultado && !resultado.Mensaje) {
+    if(resultado != null) {
       res.json({"Mensaje": false});
     } else {
       res.json({"Mensaje": true});
@@ -104,7 +104,7 @@ router.delete('/api/usuario/:idUsuario',
     var idUsuario = req.params.idUsuario;
     Usuario.delete(idUsuario,
       function(error, resultado){
-      if(resultado && resultado.Mensaje == "Eliminado") {
+      if(resultado != null) {
         res.json(resultado  )
       } else {
         res.json({"Mensaje": "No se puede eliminar"});
