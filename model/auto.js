@@ -28,9 +28,8 @@ auto.select = function(id, callback){
 
 auto.insert = function(data,callback){
   if(database){
-    database.query("INSERT INTO auto (idUsuario,modelo,marca,anio,codigo,fechaCreacion) "
-    +"VALUES(?,?,?,?,?,?, NOW())",
-    [data.idUsuario,data.modelo,data.marca,data.anio,data.codigo,data.fechaCreacion],
+    database.query("CALL `sp_crearAuto`(?,?,?,?,?)",
+    [data.marca,data.modelo,data.anio,data.idUsuario,data.idEmpresa],
     function(error,resultado){
       if(error){
         throw error;

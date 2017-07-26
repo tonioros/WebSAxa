@@ -15,8 +15,8 @@ router.get('/api/auto/us/:idUsuario', function(req, res) {
 
 router.get('/api/auto/au/:idAuto',
   function(req, res) {
-    var idEmpresa = req.params.idEmpresa;
-    model.select(idUsuario,
+    var idEmpresa = req.params.idAuto;
+    model.select(idAuto,
       function(error, resultados){
       if(typeof resultados !== undefined) {
         res.json(resultados);
@@ -28,17 +28,15 @@ router.get('/api/auto/au/:idAuto',
 
 router.post('/api/auto', function(req, res) {
   var data = {
-    idAuto : 0,
     idUsuario: req.body.idUsuario,
     modelo: req.body.modelo,
     marca: req.body.marca,
     anio: req.body.anio,
-    codigo: req.body.codigo,
-    fechaCreacion: req.body.fechaCreacion
+    idEmpresa: req.body.idEmpresa
   }
   model.insert(data, function(err, resultado) {
-    if(resultado && resultado.insertId > 0) {
-      res.json({"Mensaje": "Se ingreso un auto"});
+    if(resultado != null) {
+      res.json(resultado);
     } else {
       res.json({"Mensaje": "No se ingreso el auto"});
     }
@@ -73,7 +71,7 @@ router.delete('/api/auto/:id',
     model.delete(id,
       function(error, resultado){
       if(resultado && resultado.Mensaje === "Eliminado") {
-        res.json({"Mensaje": "Se elimino"});
+        res.json({"Mensaje": true});
       } else {
         res.json({"Mensaje": "No se puede eliminar"});
       }
