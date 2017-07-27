@@ -2,7 +2,7 @@ var database = require("./database"),
 detalleservicio = {}
 
 detalleservicio.selectAll = function(idServicio, callback){
-    database.query("SELECT * FROM detalleservicio WHERE idServicio = ? ;", 
+    database.query("SELECT * FROM detalleServicio WHERE idServicio = ? ;", 
     idServicio, function(error, resultado){
         if(!error){
             callback(null, resultado)
@@ -13,7 +13,7 @@ detalleservicio.selectAll = function(idServicio, callback){
 }
 
 detalleservicio.select = function(idDetalleS, callback){
-    database.query("SELECT * FROM detalleservicio WHERE idDetalleS = ? ;", 
+    database.query("SELECT * FROM detalleServicio WHERE idDetalleS = ? ;", 
     idDetalleS, function(error, resultado){
         if(!error){
             callback(null, resultado)
@@ -24,7 +24,7 @@ detalleservicio.select = function(idDetalleS, callback){
 }
 
 detalleservicio.insert = function(data, callback){
-    database.query("INSERT INTO detalleservicio(idServicio, descripcion, subtotal) VALUES(?,?,?);", 
+    database.query("INSERT INTO detalleServicio(idServicio, descripcion, subtotal) VALUES(?,?,?);", 
     data, function(error, resultado){
         if(!error){
             callback(null, {Mensaje: true})
@@ -35,7 +35,7 @@ detalleservicio.insert = function(data, callback){
 }
 
 detalleservicio.delete = function(idDetalleS, callback){
-    database.query("DELETE FROM detalleservicio WHERE idDetalleS = ? ;", 
+    database.query("DELETE FROM detalleServicio WHERE idDetalleS = ? ;", 
     idDetalleS, function(error, resultado){
         if(!error){
              callback(null, {Mensaje: true})
