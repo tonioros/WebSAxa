@@ -56,7 +56,9 @@ auto.update = function (data,callback){
 
 auto.delete = function (id, callback){
   if(database){
-    database.query('DELETE FROM auto WHERE idAuto = ?'.id,
+    var sql = `DELETE FROM auto WHERE idAuto = ${id}`
+    console.log(sql)
+    database.query(sql,
     function(error,resultado){
       if(error){
         throw error;
