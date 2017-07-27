@@ -3,8 +3,8 @@ var router = require('express').Router();
 
 router.post('/upload', function(req, res, next) {
     var form = formidable.IncomingForm()
-    var filePath = 'https://axaws.herokuapp.com/';
-    var fileServer = 'https://axaws.herokuapp.com';
+    var filePath = 'http://localhost/';
+    var fileServer = 'http://localhost/';
     var nameFile = ""
     //Aca entra la peticion y Formidable se encarga de obtener solo el encabezado
     //"file" para asi comenzar a guardarlo
