@@ -3,7 +3,7 @@ var calendario = {};
 
 calendario.selectAllByCli = function(idCliente, callback) {
   if(database) {
-    database.query("SELECT ca.*, au.modelo, au.marca, au.anio, em.nombre, DATE_FORMAT(ca.fecha, '%Y-%m-%d') AS fechaFormat, DATE_FORMAT(ca.fecha, '%H:%i:%s') AS horaFormat FROM calendario ca INNER JOIN auto au ON au.idAuto = ca.idAuto INNER JOIN empresa em ON em.idEmpresa = ca.idEmpresa WHERE idCliente = ?",
+    database.query("SELECT ca.*, au.modelo, au.marca, au.anio, em.nombre, DATE_FORMAT(ca.fecha, '%Y-%m-%d') AS fechaFormat, DATE_FORMAT(ca.fecha, '%H:%i') AS horaFormat FROM calendario ca INNER JOIN auto au ON au.idAuto = ca.idAuto INNER JOIN empresa em ON em.idEmpresa = ca.idEmpresa WHERE idCliente = ?",
     idCliente,
     function(error, resultados) {
       if(error) {
@@ -17,7 +17,7 @@ calendario.selectAllByCli = function(idCliente, callback) {
 
 calendario.selectAllByAut = function(idAuto, callback) {
   if(database) {
-    database.query("SELECT ca.*, au.modelo, au.marca, au.anio, em.nombre, DATE_FORMAT(ca.fecha, '%Y-%m-%d') AS fechaFormat, DATE_FORMAT(ca.fecha, '%H:%i:%s') AS horaFormat FROM calendario ca INNER JOIN auto au ON au.idAuto = ca.idAuto INNER JOIN empresa em ON em.idEmpresa = ca.idEmpresa WHERE idAuto = ?",
+    database.query("SELECT ca.*, au.modelo, au.marca, au.anio, em.nombre, DATE_FORMAT(ca.fecha, '%Y-%m-%d') AS fechaFormat, DATE_FORMAT(ca.fecha, '%H:%i') AS horaFormat FROM calendario ca INNER JOIN auto au ON au.idAuto = ca.idAuto INNER JOIN empresa em ON em.idEmpresa = ca.idEmpresa WHERE idAuto = ?",
     idAuto,
     function(error, resultados) {
       if(error) {
