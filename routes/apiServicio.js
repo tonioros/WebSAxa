@@ -44,6 +44,22 @@ router.get("/api/servicio/mec/:idMecanico", function(req,res,next){
     }
 })
 
+router.get("/api/servicio/cl/:idCliente", function(req,res,next){
+    if(req.params.idCliente != null){
+        servicio.selectByMechanical(req.params.idCliente, function(error, resultado){
+            if(resultado == null){
+                res.json({Mensaje: "SIN RESULTADO"})
+            }else{
+                if(resultado.length != 0){
+                    res.json(resultado)
+                }else{
+                    res.json({Mensaje: "Servicio no encontrado"})
+                }
+            }
+        })
+    }
+})
+
 router.get("/api/servicio/:dia/:mes/:anio", function(req,res,next){
     if(req.params.dia != null && req.params.mes != null && req.params.anio != null){
         var data = [req.params.dia,req.params.mes,req.params.anio]

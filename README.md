@@ -62,6 +62,17 @@ Web API para AXA Control servicio de Clientes Mecanica
 3. /api/empresa/cd/:codigo
     -Selecciona una empresa en base al código, recordando que el código es único.
 
+## Factura
+1. GET: /api/factura/em/:idEmpresa
+    -Obtener facturas por empresa
+
+2. GET: /api/empresa/cl/:idCliente
+    -Obtener facturas por cliente especifico.
+
+3. POST: /api/empresa/
+    -Agregar facturas.
+__Una factura no se elimina ni se edita solo se agreaga__
+
 ## Servicio ##
 1. /api/servicio/emp/:idEmpresa
     -Unicamente para método GET y selecciona todos los servicios dados en una sola empresa.
@@ -72,13 +83,16 @@ Web API para AXA Control servicio de Clientes Mecanica
 3. /api/servicio/mec/:idMecanico
     -Unicamente para método GET y selecciona todos los servicios dados por un mecánico.
 
-4. /api/servicio/:dia/:mes/:anio
+4. /api/servicio/cl/:idCliente
+    -Unicamente para método GET y selecciona todos los servicios dados por un cliente.
+
+5. /api/servicio/:dia/:mes/:anio
     -Unicamente para método GET y selecciona todos los servicios dados en unA fecha en específica, dada en la URL como parametros, primero el día, luego el mes y por último el año.
 
-5. /api/servicio/:idServicio
+6. /api/servicio/:idServicio
     -Se utiliza en PUT, DELETE y GET. Obteniendo como resultado, con el metodo GET, una único servicio.
 
-6. /api/servicio
+7. /api/servicio
     -Para método POST
 
 ## Usuario ##

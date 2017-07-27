@@ -14,6 +14,7 @@ apiCServicio = require('./routes/apiComentarioServicio'),
 apiCalendario  = require("./routes/apiCalendario"),
 apiAuto = require('./routes/apiAuto'),
 apiEmpresa = require('./routes/apiEmpresa'),
+apiFactura = require('./routes/apiFactura'),
 apiUsuario = require('./routes/apiUsuario'),
 //Conexion a Router para Autenticar por Facebook
 authFacebook = require('./routes/AuthenticationFB'),
@@ -48,6 +49,7 @@ app.use('/', apiCalendario)
 app.use('/', apiAuto)
 app.use('/', apiEmpresa)
 app.use('/', apiUsuario)
+app.use('/', apiFactura)
 //Carga de Imagenes
 app.use('/',upload)
 //Autenticacion de Facebook
