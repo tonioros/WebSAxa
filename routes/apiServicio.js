@@ -44,9 +44,25 @@ router.get("/api/servicio/mec/:idMecanico", function(req,res,next){
     }
 })
 
-router.get("/api/servicio/cl/:idCliente", function(req,res,next){
+router.get("/api/servicio/cl/SF/:idCliente", function(req,res,next){
     if(req.params.idCliente != null){
-        servicio.selectByClient(req.params.idCliente, function(error, resultado){
+        servicio.selectByClientNOTF(req.params.idCliente, function(error, resultado){
+            if(resultado == null){
+                res.json({Mensaje: "SIN RESULTADO"})
+            }else{
+                if(resultado.length != 0){
+                    res.json(resultado)
+                }else{
+                    res.json({Mensaje: "Servicio no encontrado"})
+                }
+            }
+        })
+    }
+})
+
+router.get("/api/servicio/cl/CF/:idCliente", function(req,res,next){
+    if(req.params.idCliente != null){
+        servicio.selectByClientF(req.params.idCliente, function(error, resultado){
             if(resultado == null){
                 res.json({Mensaje: "SIN RESULTADO"})
             }else{
