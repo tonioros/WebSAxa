@@ -46,7 +46,7 @@ router.get("/api/servicio/mec/:idMecanico", function(req,res,next){
 
 router.get("/api/servicio/cl/:idCliente", function(req,res,next){
     if(req.params.idCliente != null){
-        servicio.selectByMechanical(req.params.idCliente, function(error, resultado){
+        servicio.selectByClient(req.params.idCliente, function(error, resultado){
             if(resultado == null){
                 res.json({Mensaje: "SIN RESULTADO"})
             }else{
