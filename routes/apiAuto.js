@@ -13,6 +13,18 @@ router.get('/api/auto/us/:idUsuario', function(req, res) {
   });
 });
 
+router.get('/api/auto/emp/:idEmpresa', function(req, res) {
+  var id = req.params.idEmpresa;
+  model.selectByEmp(id,function(error, resultados){
+    if(typeof resultados !== undefined) {
+      res.json(resultados);
+    } else {
+      res.json({"Mensaje": "No hay autos"});
+    }
+  });
+});
+
+
 router.get('/api/auto/au/:idAuto',
   function(req, res) {
     var idAuto = req.params.idAuto;
