@@ -51,8 +51,8 @@ factura.select = function(id, callback){
 
 factura.insert = function(data,callback){
   if(database){
-    database.query("INSERT INTO factura(idServicio, fecha, idUsuario, total, idEmpresa) VALUES (?,?,?,?,?); ",
-    [data.idServicio,data.fecha,data.idUsuario,data.total,data.idEmpresa],
+    database.query("INSERT INTO factura(idServicio, fecha, idUsuario, total, idEmpresa) VALUES (?,NOW(),?,?,?); ",
+    [data.idServicio,data.idUsuario,data.total,data.idEmpresa],
     function(error,resultado){
       if(error){
         throw error;
