@@ -24,6 +24,18 @@ router.get('/api/factura/cl/:idCliente',
   });
 });
 
+router.get('/api/factura/serv/:idServicio',
+  function(req, res) {
+    model.selectByServicio(req.params.idServicio,
+      function(error, resultados){
+      if(typeof resultados !== undefined) {
+        res.json(resultados);
+      } else {
+        res.json({"Mensaje": "No hay factura"});
+      }
+  });
+});
+
 router.post('/api/factura', function(req, res) {
   var data = {
     idServicio: req.body.idServicio,
