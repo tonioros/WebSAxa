@@ -15,7 +15,7 @@ router.get('/api/empresa/', function(req, res) {
 router.get('/api/empresa/:idEmpresa',
   function(req, res) {
     var idEmpresa = req.params.idEmpresa;
-    model.select(idUsuario,
+    model.select(idEmpresa,
       function(error, resultados){
       if(typeof resultados !== undefined) {
         res.json(resultados);
