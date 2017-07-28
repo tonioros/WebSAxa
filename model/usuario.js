@@ -3,7 +3,7 @@ var usuario = {};
 
 usuario.selectAll = function(id, callback){
   if(database){
-    database.query("SELECT us.*, em.nombre AS nombreEmpresa FROM usuario WHERE idEmpresa = ?", id,function(error,resultados){
+    database.query("SELECT us.*, em.nombre AS nombreEmpresa FROM usuario us INNER JOIN empresa em ON em.idEmpresa = us.idEmpresa WHERE idEmpresa = ?", id,function(error,resultados){
       if(error){
         throw error;
       }else {
