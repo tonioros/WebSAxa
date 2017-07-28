@@ -36,7 +36,7 @@ router.get("/api/ds/:idDetalleS", function (req, res, next) {
 router.post("/api/ds", function (req, res, next) {
     var data = [req.body.idServicio, req.body.descripcion, req.body.subtotal]
     detalleS.insert(data, function (err, response) {
-        if (!error) {
+        if (!err) {
           res.json(resultado);
         } else {
             res.json({ Mensaje: false });
