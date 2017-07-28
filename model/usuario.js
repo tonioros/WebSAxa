@@ -3,7 +3,19 @@ var usuario = {};
 
 usuario.selectAll = function(id, callback){
   if(database){
-    database.query("SELECT us.*, em.nombre AS nombreEmpresa FROM usuario us INNER JOIN empresa em ON em.idEmpresa = us.idEmpresa WHERE us.idEmpresa = ?", id,function(error,resultados){
+    database.query("SELECT us.*, em.nombre AS nombreEmpresa FROM usuario us INNER JOIN empresa em ON em.idEmpresa = us.idEmpresa WHERE us.idEmpresa = ? AND us.idTipoUsuario = 1", id,function(error,resultados){
+      if(error){
+        throw error;
+      }else {
+        callback(null,resultados);
+      }
+    });
+  }
+}
+
+usuario.selectAllMec = function(id, callback){
+  if(database){
+    database.query("SELECT us.*, em.nombre AS nombreEmpresa FROM usuario us INNER JOIN empresa em ON em.idEmpresa = us.idEmpresa WHERE us.idEmpresa = ? AND us.idTipoUsuario = 2", id,function(error,resultados){
       if(error){
         throw error;
       }else {
