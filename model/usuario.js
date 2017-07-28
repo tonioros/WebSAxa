@@ -26,6 +26,22 @@ usuario.select = function(id, callback){
   }
 }
 
+usuario.selectMec = function(id, callback){
+  if(database){
+    var sql = `
+    SELECT us.* , em.nombre AS nombreEmpresa FROM usuario us INNER JOIN empresa em ON em.idEmpresa = us.idEmpresa WHERE us.idUsuario IN 
+    (SELECT se.idMecanico FROM servicio se INNER JOIN auto au ON au.idAuto = se.idAuto WHERE au.idUsuario = ?)
+    `;
+    database.query(sql,id,function(error,resultado){
+      if(error){
+        throw error;
+      }else {
+        callback(null,resultado);
+      }
+    });
+  }
+}
+
 usuario.VerifyEmail = function(email, callback){
   if(database){
     var sql = "SELECT COUNT(correo) AS conteo FROM usuario WHERE correo = ?";
