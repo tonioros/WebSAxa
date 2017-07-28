@@ -17,7 +17,7 @@ router.get("/api/cs/:idComentarioS", function (req, res, next) {
 
 router.get("/api/cs/serv/:idServicio", function (req, res, next) {
     if (req.params.idServicio != null) {
-        comentarioS.selectByServ(req.params.idServicio, function (err, response) {
+        comentarioS.selectAll(req.params.idServicio, function (err, response) {
             if (response != null) {
                 res.json(response)
             } else {
