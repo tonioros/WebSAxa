@@ -13,6 +13,18 @@ auto.selectAll = function(idUsuario, callback){
   }
 }
 
+auto.selectByEmp = function(idEmpresa, callback){
+  if(database){
+    database.query("SELECT au.* FROM auto au WHERE au.idAuto IN (SELECT at.idAuto FROM usuario us INNER JOIN auto at ON at.idUsuario = us.idUsuario WHERE us.idEmpresa = ?) ",idEmpresa,function(error,resultados){
+      if(error){
+        throw error;
+      }else {
+        callback(null,resultados);
+      }
+    });
+  }
+}
+
 auto.select = function(id, callback){
   if(database){
     var sql = "SELECT * FROM auto WHERE idAuto = ? ";
