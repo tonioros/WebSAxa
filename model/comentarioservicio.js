@@ -2,7 +2,7 @@ var database = require("./database"),
 comentarioS = {}
 
 comentarioS.selectAll = function(idServicio, callback){
-    database.query("SELECT * FROM  comentarioservicio WHERE idComentarioS = ? ;", idServicio, function(err, response){
+    database.query("SELECT * FROM  comentarioservicio WHERE idServicio = ? ;", idServicio, function(err, response){
         if(!err){
             callback(null,response)
         }else{
