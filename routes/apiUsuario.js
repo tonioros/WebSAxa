@@ -32,6 +32,17 @@ router.get('/api/usuario/emp/:idEmpresa', function(req, res) {
   });
 });
 
+router.get('/api/usuario/emp/mec/:idEmpresa', function(req, res) {
+  var id = (req.params.idEmpresa != null)?req.params.idEmpresa : 0;
+  Usuario.selectAllMec(id,function(error, resultados){
+    if(typeof resultados !== undefined) {
+      res.json(resultados);
+    } else {
+      res.json({"Mensaje": "No hay Usuarios"});
+    }
+  });
+});
+
 router.get('/api/usuario/co/:correo', function(req, res) {
   var email = (req.params.correo != null)?req.params.correo : '';
   Usuario.VerifyEmail(email,function(error, resultados){
