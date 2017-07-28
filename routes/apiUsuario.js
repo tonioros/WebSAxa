@@ -56,6 +56,19 @@ router.get('/api/usuario/:idUsuario',
   });
 });
 
+router.get('/api/mecanico/cli/:idCliente',
+  function(req, res) {
+    var idCliente = req.params.idCliente;
+    Usuario.selectMec(idCliente,
+      function(error, resultados){
+      if(typeof resultados !== undefined) {
+        res.json(resultados);
+      } else {
+        res.json({"Mensaje": "No hay Usuarios"});
+      }
+  });
+});
+
 router.post('/api/usuario', function(req, res) {
   var data = {
     nombre: req.body.nombre,

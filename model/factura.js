@@ -24,6 +24,18 @@ factura.selectByClient = function(idCliente, callback){
   }
 }
 
+factura.selectByServicio = function(idServicio, callback){
+  if(database){
+    database.query("SELECT * FROM factura WHERE idServicio = ?",idServicio,function(error,resultados){
+      if(error){
+        throw error;
+      }else {
+        callback(null,resultados);
+      }
+    });
+  }
+}
+
 factura.select = function(id, callback){
   if(database){
     var sql = "SELECT * FROM factura WHERE idfactura = ? ";
