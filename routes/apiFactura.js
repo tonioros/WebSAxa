@@ -39,7 +39,6 @@ router.get('/api/factura/serv/:idServicio',
 router.post('/api/factura', function(req, res) {
   var data = {
     idServicio: req.body.idServicio,
-    fecha: req.body.fecha,
     idUsuario: req.body.idUsuario,
     total: req.body.total,
     idEmpresa: req.body.idEmpresa
