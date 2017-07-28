@@ -70,10 +70,10 @@ router.post('/api/Calendario', function(req, res) {
     idEmpresa: req.body.idEmpresa
   }
   calendario.Insert(data, function(err, resultado) {
-    if(resultado && resultado.insertId > 0) {
-      res.redirect('/');
+    if(resultado != null) {
+      res.json(resultado)
     } else {
-      res.json({"Mensaje": "No se ingreso el calendario"});
+      res.json({"Mensaje": false});
     }
   });
 });
@@ -100,10 +100,10 @@ router.put('/api/Cal/:idCalendario', function(req, res) {
 router.delete('/api/Cal/:idCalendario', function(req, res) {
     var idCalendario = req.params.idCalendario;
     calendario.Delete(idCalendario,function(error, resultado){
-      if(resultado && resultado.Mensaje === "Eliminado") {
+      if(resultado != null) {
         res.json(resultado)
       } else {
-        res.json({"Mensaje": "No se puede eliminar"});
+        res.json({"Mensaje": false});
       }
   });
 });

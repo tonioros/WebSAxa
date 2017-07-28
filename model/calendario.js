@@ -72,13 +72,15 @@ calendario.SelectOne = function(idDetalleS, callback) {
 
 calendario.Insert = function(data, callback) {
   if(database) {
-    database.query("INSERT INTO calendario(idCliente, fecha, descripcion, idAuto, idEmpresa) VALUES(?,?,?,?,?) ", [data.idCliente, data.fecha, data.descripcion, 
-    data.idAuto, data.idEmpresa],
+    var sql = "INSERT INTO calendario(idCliente, fecha, descripcion, idAuto, idEmpresa) VALUES (?,?,?,?,?);"
+    console.log(sql, data)
+    database.query(sql, 
+    [data.idCliente, data.fecha, data.descripcion, data.idAuto, data.idEmpresa],
     function(error, resultado) {
       if(error) {
         throw error;
       } else {
-        callback(null, {"insertId": resultado.insertId});
+        callback(null,{Mensaje: true});
       }
     });
   }

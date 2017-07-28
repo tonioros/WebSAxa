@@ -70,7 +70,7 @@ servicio.selectByClientNOTF = function(idCliente,callback){
         +",au.idAuto, au.modelo, au.marca, au.anio, au.codigo AS codigoAuto "
         +",sr.fecha AS fechaServicio, sr.idEmpresa FROM servicio sr "
         +"INNER JOIN usuario me ON me.idUsuario = sr.idMecanico INNER JOIN auto au ON au.idAuto = sr.idAuto "
-        +"WHERE sr.idServicio NOT IN (SELECT idServicio FROM factura WHERE idUsuario= 1)LIMIT 15;",idCliente,
+        +"WHERE sr.idServicio NOT IN (SELECT idServicio FROM factura WHERE idUsuario= ?)LIMIT 15;",idCliente,
         function(error, resultado){
             if(resultado != null){
                 callback(null, resultado)
@@ -88,7 +88,43 @@ servicio.selectByClientF = function(idCliente,callback){
         +",au.idAuto, au.modelo, au.marca, au.anio, au.codigo AS codigoAuto "
         +",sr.fecha AS fechaServicio, sr.idEmpresa FROM servicio sr "
         +"INNER JOIN usuario me ON me.idUsuario = sr.idMecanico INNER JOIN auto au ON au.idAuto = sr.idAuto "
-        +"WHERE sr.idServicio IN (SELECT idServicio FROM factura WHERE idUsuario= 1)LIMIT 15;",idCliente,
+        +"WHERE sr.idServicio IN (SELECT idServicio FROM factura WHERE idUsuario= ?)LIMIT 15;",idCliente,
+        function(error, resultado){
+            if(resultado != null){
+                callback(null, resultado)
+            }else{
+                throw error;
+            }
+        }
+    )
+    }
+}
+
+servicio.selectByMecNOTF = function(idMecanico,callback){
+    if(database){
+    database.query("SELECT sr.idServicio, me.idUsuario, me.nombre AS nombreUsuario,me.codigo AS codigoUsuario , me.urlIMG AS imgUsuario"
+        +",au.idAuto, au.modelo, au.marca, au.anio, au.codigo AS codigoAuto "
+        +",sr.fecha AS fechaServicio, sr.idEmpresa FROM servicio sr "
+        +"INNER JOIN usuario me ON me.idUsuario = sr.idMecanico INNER JOIN auto au ON au.idAuto = sr.idAuto "
+        +"WHERE sr.idServicio NOT IN (SELECT idServicio FROM factura) && sr.idMecanico = ? LIMIT 15;",idMecanico,
+        function(error, resultado){
+            if(resultado != null){
+                callback(null, resultado)
+            }else{
+                throw error;
+            }
+        }
+    )
+    }
+}
+
+servicio.selectByMecF = function(idMecanico,callback){
+    if(database){
+    database.query("SELECT sr.idServicio, me.idUsuario, me.nombre AS nombreUsuario,me.codigo AS codigoUsuario , me.urlIMG AS imgUsuario"
+        +",au.idAuto, au.modelo, au.marca, au.anio, au.codigo AS codigoAuto "
+        +",sr.fecha AS fechaServicio, sr.idEmpresa FROM servicio sr "
+        +"INNER JOIN usuario me ON me.idUsuario = sr.idMecanico INNER JOIN auto au ON au.idAuto = sr.idAuto "
+        +"WHERE sr.idServicio IN (SELECT idServicio FROM factura) && sr.idMecanico = ? LIMIT 15;",idMecanico,
         function(error, resultado){
             if(resultado != null){
                 callback(null, resultado)

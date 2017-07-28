@@ -43,7 +43,9 @@ router.get("/api/servicio/mec/:idMecanico", function(req,res,next){
         })
     }
 })
-
+/**
+ * Servicios para Clientes
+ */
 router.get("/api/servicio/cl/SF/:idCliente", function(req,res,next){
     if(req.params.idCliente != null){
         servicio.selectByClientNOTF(req.params.idCliente, function(error, resultado){
@@ -75,7 +77,43 @@ router.get("/api/servicio/cl/CF/:idCliente", function(req,res,next){
         })
     }
 })
+/**
+ * Servicios para Mecanico
+ */
+router.get("/api/servicio/mec/SF/:idMecanico", function(req,res,next){
+    if(req.params.idMecanico != null){
+        servicio.selectByMecNOTF(req.params.idMecanico, function(error, resultado){
+            if(resultado == null){
+                res.json({Mensaje: "SIN RESULTADO"})
+            }else{
+                if(resultado.length != 0){
+                    res.json(resultado)
+                }else{
+                    res.json({Mensaje: "Servicio no encontrado"})
+                }
+            }
+        })
+    }
+})
 
+router.get("/api/servicio/mec/CF/:idMecanico", function(req,res,next){
+    if(req.params.idMecanico != null){
+        servicio.selectByMecF(req.params.idMecanico, function(error, resultado){
+            if(resultado == null){
+                res.json({Mensaje: "SIN RESULTADO"})
+            }else{
+                if(resultado.length != 0){
+                    res.json(resultado)
+                }else{
+                    res.json({Mensaje: "Servicio no encontrado"})
+                }
+            }
+        })
+    }
+})
+/**
+ * Busqueda por fecha
+ */
 router.get("/api/servicio/:dia/:mes/:anio", function(req,res,next){
     if(req.params.dia != null && req.params.mes != null && req.params.anio != null){
         var data = [req.params.dia,req.params.mes,req.params.anio]
